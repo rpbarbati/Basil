@@ -29,49 +29,51 @@ You will use either dynamic-form and dynamic-table to display that hosted data.
 # An HTML table with the ability to Add, Edit and Delete rows from any table in any schema
 - just replace schema.tableName below with the desired schema.tableName.
 
+```
 <dynamic-collection name="schema.tableName" filter="1=1">
-  
-  <dynamic-table name="schema.tableName" path="schema.tableName" add="addRow" update="updateRow" delete="deleteRow">
-    <!-- add, update and delete are given methods that reside in the dynamic-collection controller -->
-    <!-- If you don't want to enable a feature, like add, then do not set its attribute.  If not set, no button will appear to invoke it -->
-    
-  </dynamic-table>
- 
-</dynamic-collection>
+
+      <dynamic-table name="schema.tableName" path="schema.tableName" add="addRow" update="updateRow" delete="deleteRow">
+        <!-- add, update and delete are given methods that reside in the dynamic-collection controller -->
+        <!-- If you don't want to enable a feature, like add, then do not set its attribute.  If not set, no button will appear to invoke it -->
+
+      </dynamic-table>
+
+    </dynamic-collection>
+```
 
 # A dynamic form for any schema.tableName
 - replace schema.tableName below with the desired schema.tableName.
 - replace key_field_name with the name of a key field
 - replace key with a valid key value
+```
+    <dynamic-entity name="schema.tableName" key="{"key_field_name": key}">
 
-<dynamic-entity name="schema.tableName" key="{"key_field_name": key}">
-  
-  <dynamic-form name="schema.tableName" path="schema.tableName">
-  </dynamic-table>
- 
-</dynamic-entity>
+      <dynamic-form name="schema.tableName" path="schema.tableName">
+      </dynamic-form>
 
+    </dynamic-entity>
+```
 
 # A dynamic form and a table for a hierarchical data set
 In this example, I am loading a view which consists of an order entity with an embedded set of line items.
 - replace schema.tableName below with the desired schema.tableName.
 - replace key_field_name with the name of a key field
 - replace key with a valid key value
+```
+    <dynamic-entity name="schema.orders" deep="true" key="{'order_id': 1}">
+    <!-- set deep to true to load child entities -->
 
-<dynamic-entity name="schema.orders" deep="true" key="{'order_id': 1}">
-<!-- set deep to true to load child entities -->
-  
-  <!-- Present the detail form for the order -->
-  <dynamic-form name="schema.orders" path="schema.orders">
-  </dynamic-form>
+      <!-- Present the detail form for the order -->
+      <dynamic-form name="schema.orders" path="schema.orders">
+      </dynamic-form>
 
-  <!-- Create the table to display the embedded line items -->
-  <dynamic-table  name="schema.lineItems" path="schema.orders.schema.lineItems">
-    <!-- Notice the path leads to the embedded collection of line items, which is a child of Orders -->
-  
-  </dynamic-table>
+      <!-- Create the table to display the embedded line items -->
+      <dynamic-table  name="schema.lineItems" path="schema.orders.schema.lineItems">
+        <!-- Notice the path leads to the embedded collection of line items, which is a child of Orders -->
 
-</dynamic-entity>
+      </dynamic-table>
 
+    </dynamic-entity>
+```
 
 
